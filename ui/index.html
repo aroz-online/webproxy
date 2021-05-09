@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"/>
+        <meta charset="UTF-8">
+        <meta name="theme-color" content="#4b75ff">
+        <link rel="stylesheet" href="script/semantic/semantic.min.css">
+        <script src="script/jquery-3.5.1.min.js"></script>
+        <script src="script/semantic/semantic.min.js"></script>
+        <title>ArOZ WebProxy</title>
+        <style>
+            body{
+                background-color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <br>
+        <div class="ui container">
+            <div class="ui segment">
+                <h4 class="ui header">
+                    <i class="settings icon"></i>
+                    <div class="content">
+                        Forward Web Proxy Control Panel
+                        <div class="sub header">Turn on and off your web proxy</div>
+                    </div>
+                </h4>
+            </div>
+            <div class="ui segment">
+                <div class="ui toggle checkbox">
+                    <input id="proxybtn" onchange="updateProxyStatus(this.checked);" type="checkbox" name="proxyon">
+                    <label>Turn on Web Proxy</label>
+                </div>
+            </div>
+            <div class="ui segment">
+                <h4>Browser Proxy Setup</h4>
+                <p>You can enter the following IP address into your browser proxy settings.</p>
+                <div class="ui divider"></div>
+                <h5>Host Name</h5>
+                <p class="hostname"></p>
+                <h5>Port</h5>
+                <p class="port"></p>
+                <h5>Whitelist Sites</h5>
+                <div id="whitelist" class="ui ordered list">
+
+                </div>
+                <h5>Blacklist Sites</h5>
+                <div id="blacklist" class="ui ordered list">
+                    
+                </div>
+            </div>
+            <p>ArOZ Web Proxy - Module licensed under MIT License</p>
+        </div>
+        <script>
+            $(".hostname").text(location.hostname);
+
+            //Get settings 
+            $.get("info",function(data){
+                console.log(data);
+                $(".port").text(data.proxyport);
+                for (var i = 0; i < data.whitelist.length; i++){
+                    $("#whitelist").append(`<div class="item">${data.whitelist[i]}</div>`);
+                }
+                for (var i = 0; i < data.blacklist.length; i++){
+                    $("#blacklist").append(`<div class="item">${data.blacklist[i]}</div>`);
+                }
+            });
+
+            //Get current proxy status
+            $.get("status",function(data){
+                $("#proxybtn")[0].checked = data;
+            });
+
+            function updateProxyStatus(val){
+                var status = "off";
+                if (val == true){
+                    status = "on";
+                }
+
+                $.get("toggle?opr=" + status,function(data){
+                    console.log(data);
+                });
+            }
+        </script>
+    </body>
+</html>
