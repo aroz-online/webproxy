@@ -1,6 +1,7 @@
 package main
 
 import (
+	"aroz-online/webproxy/mod/aroz"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -11,7 +12,6 @@ import (
 	"syscall"
 
 	"github.com/smartystreets/cproxy"
-	"imuslab.com/arozos/subservice/webproxy/mod/aroz"
 )
 
 /*

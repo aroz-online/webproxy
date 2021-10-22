@@ -1,0 +1,6 @@
+{
+	"proxyport": 8081,
+	"defaulton":true,
+	"whitelist":[],
+	"blacklist":[]
+}
