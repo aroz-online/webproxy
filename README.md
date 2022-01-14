@@ -17,7 +17,7 @@ A basic web proxy subservice for ArozOS
 git clone this repo in the subservice folder and run build.sh. The  following examples assume your arozos root folder is located at `~/arozos`
 
 ```
-cd `~/arozos/subservice/
+cd ~/arozos/subservice/
 git clone https://github.com/aroz-online/webproxy
 cd webproxy
 ./build.sh
