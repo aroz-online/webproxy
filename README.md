@@ -4,7 +4,7 @@
 
 A basic web proxy subservice for ArozOS
 
-**THIS IS NOT A WEBAPP. DO NOT INSTALL VIA MODULE INSTALLER**
+**This project has been seperated as a new piece of software named [Zoraxy](https://github.com/tobychui/zoraxy) and WebProxy subservice is no longer maintained.**
 
 ## Installation
 
